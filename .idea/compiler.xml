@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="1.8">
+      <module name="livekit-android.examples.screenshare-audio" target="17" />
+      <module name="livekit-android.examples.screenshareaudio" target="17" />
+      <module name="livekit-android.examples.selfie-segmentation" target="17" />
+      <module name="livekit-android.livekit-android-camerax" target="17" />
+      <module name="livekit-android.livekit-android-sdk" target="17" />
+      <module name="livekit-android.livekit-android-test" target="17" />
+      <module name="livekit-android.sample-app" target="17" />
+      <module name="livekit-android.sample-app-basic" target="17" />
+      <module name="livekit-android.sample-app-common" target="17" />
+      <module name="livekit-android.sample-app-compose" target="17" />
+      <module name="livekit-android.sample-app-record-local" target="17" />
+      <module name="livekit-android.video-encode-decode-test" target="17" />
+      <module name="rwrtc-android.livekit-android-camerax" target="17" />
+      <module name="rwrtc-android.livekit-android-test" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

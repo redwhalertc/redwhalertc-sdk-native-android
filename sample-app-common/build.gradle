@@ -1,0 +1,101 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'kotlinx-serialization'
+}
+
+def getDefaultUrl() {
+    return "wss://demo.redwhalertc.com"
+}
+
+def getDefaultToken() {
+    return ""
+}
+
+final url = getDefaultUrl()
+final token = getDefaultToken()
+
+android {
+    namespace "io.rwrtc.android.sample.common"
+    compileSdk androidSdk.compileVersion
+
+    defaultConfig {
+        minSdk androidSdk.minVersion
+        targetSdk androidSdk.targetVersion
+        consumerProguardFiles 'consumer-rules.pro'
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "DEFAULT_URL", "\"$url\""
+            buildConfigField "String", "DEFAULT_TOKEN", "\"$token\""
+        }
+
+        debug {
+            buildConfigField "String", "DEFAULT_URL", "\"$url\""
+            buildConfigField "String", "DEFAULT_TOKEN", "\"$token\""
+        }
+    }
+    buildFeatures {
+        buildConfig = true
+    }
+    compileOptions {
+        sourceCompatibility java_version
+        targetCompatibility java_version
+    }
+    kotlinOptions {
+        jvmTarget = java_version
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+
+    api project(path: ':rwsdk')
+
+    api libs.androidx.core.ktx
+    api libs.appcompat
+    api libs.material
+    api libs.androidx.lifecycle.runtime.ktx
+    api libs.androidx.lifecycle.viewmodel.ktx
+    api libs.androidx.lifecycle.common.java8
+    api libs.androidx.lifecycle.process
+    api libs.androidx.preference.ktx
+
+    //SDK dependencies
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api libs.coroutines.lib
+    implementation libs.kotlinx.serialization.json
+    api libs.webrtc
+
+    api libs.okhttp.lib
+    implementation libs.okhttp.coroutines
+    api libs.audioswitch
+    implementation libs.androidx.annotation
+    implementation libs.androidx.core
+    api libs.protobuf.javalite
+    api libs.androidx.camera.core
+    api libs.androidx.camera.camera2
+    api libs.androidx.camera.lifecycle
+    implementation libs.android.jain.sip.ri
+    implementation libs.dagger.lib
+    kapt libs.dagger.compiler
+    api libs.timber
+    implementation libs.semver4j
+    //SDK dependencies
+
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation libs.leakcanary.android
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.core
+}
